@@ -1,0 +1,6 @@
+model/
+license-plate-recognition-barrier-0007*
+license-plate-recognition-barrier-007*/
+
+trained_model/
+lpr.egg-info/
