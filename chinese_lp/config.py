@@ -1,4 +1,4 @@
-
+es
 # Copyright (C) 2019 Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,6 +39,8 @@ lpr_patterns = [
   '^['+past_format_letter1+']['+ past_format_letter2 +'][0-9]{4}$'
 ]
 
+data_path = "./data_plates/Synthetic_Chilean_License_Plates/"
+
 # Path to the folder where all training and evaluation artifacts will be located
 model_dir = os.path.realpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'model'))
 if not os.path.exists(model_dir):
@@ -47,7 +49,7 @@ if not os.path.exists(model_dir):
 
 class train:
   # Path to annotation file with training data in per line format: <path_to_image_with_license_plate label>
-  file_list_path = '../../data/synthetic_chinese_license_plates/Synthetic_Chinese_License_Plates/train'
+  file_list_path = data_path + "train"
 
   batch_size = 32
   steps = 250001
@@ -73,7 +75,7 @@ class train:
 
 class eval:
   # Path to annotation file with validation data in per line format: <path_to_image_with_license_plate label>
-  file_list_path = '../../data/synthetic_chinese_license_plates/Synthetic_Chinese_License_Plates/val'
+  file_list_path = data_path + "val"
   checkpoint = ''
   batch_size = 1
 
@@ -85,7 +87,7 @@ class eval:
 
 class infer:
   # Path to text file with list of images in per line format: <path_to_image_with_license_plate>
-  file_list_path = '../../data/synthetic_chinese_license_plates/Synthetic_Chinese_License_Plates/test_infer'
+  file_list_path = data_path + "test_infer"
   checkpoint = ''
   batch_size = 1
 
@@ -94,7 +96,7 @@ class infer:
     per_process_gpu_memory_fraction = 0.8  # Fix extra memory allocation issue
     allow_growth = True  # Option which attempts to allocate only as much GPU memory based on runtime allocations
 
-specialCharPath = '../../data/synthetic_chinese_license_plates/Synthetic_Chinese_License_Plates/specialChars'
+specialCharPath = data_path + "specialChars"
 
 
 vocab, r_vocab, num_classes = LPRVocab.create_vocab(train.file_list_path,
