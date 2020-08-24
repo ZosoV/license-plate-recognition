@@ -2,5 +2,7 @@ model/
 license-plate-recognition-barrier-0007*
 license-plate-recognition-barrier-007*/
 
-trained_model/
+trained_models/
 lpr.egg-info/
+stored_results/
+results/

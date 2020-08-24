@@ -113,7 +113,7 @@ def infer(config):
   for _ in range(steps):
 
     vals, batch_filenames = sess.run([d_predictions, filenames])
-    print(batch_filenames)
+    #print(batch_filenames)
     pred = decode_beams(vals, config.r_vocab)
 
     
@@ -132,11 +132,14 @@ def infer(config):
                                value=(255, 255, 255))
       cv2.putText(img, pred[i], (0, img_he + text_height + 5), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 0), 2)
 
-      cv2.imshow('License Plate', img)
+      #cv2.imshow('License Plate', img)
       ii = ii +1 
-      nameImg = 'result'+str(ii)+'.png'
-      print(nameImg)
-      cv2.imwrite(nameImg,img )	
+      nameImg = 'result_'+str(ii)+'.png'
+      savePath = "results"
+      pathImg = savePath+"/"+nameImg
+      print("Result saved at: {}".format(pathImg))
+
+      cv2.imwrite(os.path.join(savePath,nameImg),img)
       key = cv2.waitKey(1)
       if key == 27:
         break

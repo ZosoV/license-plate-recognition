@@ -80,8 +80,8 @@ def main():
     if args.output:
       cv2.imwrite(args.output, img_to_display)
     else:
-      cv2.imshow('License Plate', img_to_display)
-      cv2.waitKey(0)
+      #cv2.imshow('License Plate', img_to_display)
+      #cv2.waitKey(0)
 
 
 if __name__ == "__main__":

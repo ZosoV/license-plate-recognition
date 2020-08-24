@@ -50,7 +50,7 @@ class train:
   file_list_path = '../../data/synthetic_chinese_license_plates/Synthetic_Chinese_License_Plates/train'
 
   batch_size = 32
-  steps = 50001
+  steps = 250001
   learning_rate = 0.001
   grad_noise_scale = 0.001
   opt_type = 'Adam'
