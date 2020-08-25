@@ -1,4 +1,3 @@
-es
 # Copyright (C) 2019 Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +18,7 @@ from lpr.trainer import LPRVocab
 input_shape = (24, 94, 3)  # (height, width, channels)
 use_h_concat = False
 use_oi_concat = False
-max_lp_length = 20
+max_lp_length = 6
 rnn_cells_num = 128
 
 # Licens plate patterns

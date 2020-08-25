@@ -70,18 +70,18 @@ def main():
 
   with tf.Session(graph=graph) as sess:
     results = sess.run(output, feed_dict={input: [img]})
-    print(results)
+    print("RESULTS FROM INFERENCE: {}".format(results))
 
     decoded_lp = decode_beams(results, config.r_vocab)[0]
-    print(decoded_lp)
+    print("DECODE THE RESULTS: {}".format(decoded_lp))
 
     img_to_display = display_license_plate(decoded_lp, image)
 
     if args.output:
       cv2.imwrite(args.output, img_to_display)
     else:
-      #cv2.imshow('License Plate', img_to_display)
-      #cv2.waitKey(0)
+      cv2.imshow('License Plate', img_to_display)
+      cv2.waitKey(0)
 
 
 if __name__ == "__main__":

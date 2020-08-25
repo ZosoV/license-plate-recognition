@@ -33,7 +33,10 @@ class InputData:
     self.apply_blur_aug = apply_blur_aug
 
   def input_fn(self):
+    #Generate strings to a queue for an input pipeline.
     file_src = tf.train.string_input_producer([self.file_list_path])
+
+    #
     image, label = read_data(self.batch_size, self.input_shape, file_src)
 
     if self.apply_basic_aug:
@@ -53,11 +56,19 @@ class InputData:
 
 
 def read_data(batch_size, input_shape, file_src):
+  #Take one line of the queue
   reader = tf.TextLineReader()
+
+  #Take the value tensor of the line 
   _, value = reader.read(file_src)
-  filename, label = tf.decode_csv(value, [[''], ['']], ' ')
+
+  # Convert CSV records to tensors. Each column maps to one tensor of strings
+  filename, label = tf.decode_csv(records=value,record_defaults= [[''], ['']], field_delim= ' ')
+  
+  # Reads and outputs the entire contents of the input filename. Returns a tensor of type string.
   image_file = tf.read_file(filename)
 
+  # Define the dimension of the image
   height, width, channels_num = input_shape
   rgb_image = tf.image.decode_png(image_file, channels=channels_num)
   rgb_image_float = tf.image.convert_image_dtype(rgb_image, tf.float32)

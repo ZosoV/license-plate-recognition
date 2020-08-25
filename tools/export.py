@@ -43,12 +43,14 @@ def freezing_graph(config, checkpoint, output_dir):
   graph = tf.Graph()
   with graph.as_default():
     with slim.arg_scope([slim.batch_norm, slim.dropout], is_training=False):
+      # Input for inferences from a frozen graph
       input_tensor = tf.placeholder(dtype=tf.float32, shape=shape, name='input')
       prob = inference(config.rnn_cells_num, input_tensor, config.num_classes)
       prob = tf.transpose(prob, (1, 0, 2))
       data_length = tf.fill([tf.shape(prob)[1]], tf.shape(prob)[0])
       result = tf.nn.ctc_greedy_decoder(prob, data_length, merge_repeated=True)
       predictions = tf.to_int32(result[0][0])
+      # Ouput for inferences from a frozen graph
       tf.sparse_to_dense(predictions.indices, [tf.shape(input_tensor, out_type=tf.int64)[0], config.max_lp_length],
                          predictions.values, default_value=-1, name='d_predictions')
       init = tf.initialize_all_variables()

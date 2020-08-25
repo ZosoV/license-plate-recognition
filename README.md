@@ -41,7 +41,8 @@
 3. Download and prepare required submodules:
 
     ```bash
-    bash ../prepare_modules.sh
+    cd ..
+    bash prepare_modules.sh
     ```
 
 ## Train an LPRNet Model
