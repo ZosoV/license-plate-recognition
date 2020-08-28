@@ -18,7 +18,7 @@ from lpr.trainer import LPRVocab
 input_shape = (24, 94, 3)  # (height, width, channels)
 use_h_concat = False
 use_oi_concat = False
-max_lp_length = 6
+max_lp_length = 12
 rnn_cells_num = 128
 
 # Licens plate patterns

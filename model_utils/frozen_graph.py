@@ -53,7 +53,8 @@ def freezing_graph(config, checkpoint, output_dir):
       predictions = tf.to_int32(result[0][0])
       # Ouput for inferences from a frozen graph #out_shap [,20]
       d_predictions = tf.sparse_to_dense(predictions.indices, [tf.shape(input_tensor, out_type=tf.int64)[0], config.max_lp_length],
-                         predictions.values, default_value=-1, name='d_predictions')
+                         predictions.values, default_value=-1) #, name='d_predictions')
+      one_hot_result = tf.one_hot(d_predictions,  depth = 71, axis=-1, name='d_predictions')
       init = tf.initialize_all_variables()
       saver = tf.train.Saver(write_version=tf.train.SaverDef.V2)
 
@@ -66,9 +67,9 @@ def freezing_graph(config, checkpoint, output_dir):
     writer = tf.summary.FileWriter(output_dir, sess.graph)
     writer.close()
 
-  if need_saved_moodel:
-    # os.mkdir(os.path.join(output_dir,"savedModel"))
-    tf.compat.v1.saved_model.simple_save(sess, os.path.join(output_dir,"savedModel"), inputs={"input": input_tensor}, outputs={"d_predictions": d_predictions})
+  # if need_saved_moodel:
+  #   # os.mkdir(os.path.join(output_dir,"savedModel"))
+  #   tf.compat.v1.saved_model.simple_save(sess, os.path.join(output_dir,"savedModel"), inputs={"input": input_tensor}, outputs={"d_predictions": d_predictions})
 
   frozen = tf.graph_util.convert_variables_to_constants(sess, sess.graph_def, ["d_predictions"])
   tf.train.write_graph(sess.graph, output_dir, 'graph.pbtxt', as_text=True)

@@ -1,0 +1,18 @@
+name: "lpr_model_onehot"
+platform: "tensorflow_graphdef"
+max_batch_size: 8
+input [
+  {
+    name: "input"
+    data_type: TYPE_FP32
+    dims: [24, 94, 3 ]
+  }
+]
+output [
+  {
+    name: "d_predictions"
+    data_type: TYPE_INT32
+    dims: [ 6, 71]
+    label_filename: "lpr_labels.txt"
+  }
+]
