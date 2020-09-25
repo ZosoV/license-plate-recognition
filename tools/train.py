@@ -22,7 +22,6 @@ import tensorflow as tf
 from lpr.trainer import CTCUtils, inference, InputData
 from tfutils.helpers import load_module
 
-
 def parse_args():
   parser = argparse.ArgumentParser(description='Perform training of a model')
   parser.add_argument('path_to_config', help='Path to a config.py')
@@ -107,6 +106,8 @@ def train(config, init_checkpoint):
 
   graph.finalize()
 
+  mean_accuracy, mean_accuracy_minus_1 = 0 ,0
+  num = 0
 
   for i in range(config.train.steps):
     curr_step, curr_learning_rate, curr_loss, curr_opt_loss = session.run([global_step, learning_rate, loss, opt_loss])

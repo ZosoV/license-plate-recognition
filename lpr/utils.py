@@ -55,7 +55,11 @@ def accuracy(label, val, vocab, r_vocab, lpr_patterns):
       print('GT label fails: ' + label[i].decode('utf-8'))
       continue
     best = pred[i]
+
+    #the edit distance show the number of steps that takes to change a string to the other
     edd = edit_distance(encode(label[i].decode('utf-8'), vocab), encode(best, vocab))
+
+    #they return two accuracies
     if edd <= 1:
       acc1 += 1
     if label[i].decode('utf-8') == best:

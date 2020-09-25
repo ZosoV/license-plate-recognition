@@ -8,6 +8,8 @@ stored_results/
 results/
 .vscode/
 data_plates/
+model_utils/old_frozen_models/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
