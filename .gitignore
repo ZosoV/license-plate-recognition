@@ -7,7 +7,6 @@ lpr.egg-info/
 stored_results/
 results/
 .vscode/
-data_plates/
 model_utils/old_frozen_models/
 
 
