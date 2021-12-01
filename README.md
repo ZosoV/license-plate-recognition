@@ -1,6 +1,6 @@
 # License Plate Recognition for Chilean Plates
 
-This work is an update implementation of [LPRNet](https://arxiv.org/abs/1806.10447) for Chilean License Plates, which is an end-to-end method for Automatic License Plate Recognition without preliminary character segmentation.
+This work is an updated implementation of [LPRNet](https://arxiv.org/abs/1806.10447) for Chilean License Plates, which is an end-to-end method for Automatic License Plate Recognition without preliminary character segmentation.
 
 We provided different configurations and edited some code to replace the Chinese chars to coincide with our requirements (Chilean characters). Additionally, we developed a license plate generation code to provide data augmentation, which can be updated using different fonts and background images. You can find the source of the generator as [platesGenerator](https://github.com/ZosoV/platesGenerator)
 
